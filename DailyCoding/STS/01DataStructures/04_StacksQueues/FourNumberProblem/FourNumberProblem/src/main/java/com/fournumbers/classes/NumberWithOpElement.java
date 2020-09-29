@@ -6,6 +6,12 @@ public class NumberWithOpElement implements StackableElement {
 	private String elementNumber;
 	private String elementOp;
 	
+	public NumberWithOpElement() {
+	}
+	public NumberWithOpElement(String elementNumber, String elementOp) {
+		this.elementNumber = elementNumber;
+		this.elementOp = elementOp;
+	}
 	public String getElementNumber() {
 		return elementNumber;
 	}
