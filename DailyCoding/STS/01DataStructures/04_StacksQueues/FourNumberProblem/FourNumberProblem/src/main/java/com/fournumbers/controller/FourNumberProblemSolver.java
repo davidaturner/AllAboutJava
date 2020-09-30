@@ -3,22 +3,21 @@ package com.fournumbers.controller;
 import com.fournumbers.classes.FourNumberProblem;
 import com.fournumbers.classes.FourNumberProblemPOJO;
 import com.fournumbers.classes.NumberWithOpStack;
+import com.fournumbers.interfaces.Evaluable;
+import com.fournumbers.interfaces.Problematic;
 import com.fournumbers.interfaces.Solvable;
 
-public class FourNumberProblemSolver implements Solvable {
+public class FourNumberProblemSolver implements Solvable, Problematic {
 
-	private final FourNumberProblem problem;
-	private static NumberWithOpStack solveStack;
+	private static NumberWithOpStack solveStack = new NumberWithOpStack();
 	
-	private String evaluation;
+	private FourNumberProblem problem;	
+	private Evaluable evaluator;
 	
-	private boolean bruteForce;
-	
-	public FourNumberProblemSolver(FourNumberProblem problem) {
+	public FourNumberProblemSolver(FourNumberProblem problem,
+									FourNumberProblemEvaluator evaluator) {
 		this.problem = problem;
-		solveStack = new NumberWithOpStack();
-		evaluation = Solvable.NOT_STARTED;
-		bruteForce = true;
+		this.evaluator = evaluator;
 	}
 	
 	@Override
@@ -32,11 +31,6 @@ public class FourNumberProblemSolver implements Solvable {
 	}
 
 	@Override
-	public String evaluate() {
-		return evaluate(problem);
-	}
-
-	@Override
 	public String[] solve() {
 		
 		// validate the problem
@@ -47,13 +41,9 @@ public class FourNumberProblemSolver implements Solvable {
 			display(problem.describe());
 			
 			// start solving the problem
-			evaluation = Solvable.NOT_RESOLVED;
 			
 			// while not resolved continue
 			// evaluating the problem.
-			while (!isResolved()) {
-				evaluation = evaluate(problem);
-			}
 
 			// generate solution
 			return translate();
@@ -62,12 +52,9 @@ public class FourNumberProblemSolver implements Solvable {
 		return null;
 	}
 
-	private boolean isResolved() {
-		return evaluation.equals(Solvable.RESOLVED) ||
-				evaluation.equals(Solvable.SOLVED);
-	}
-	private String evaluate(FourNumberProblem problem) {
-		return Solvable.SOLVED;
+	@Override
+	public String evaluate() {
+		return evaluator.evaluate();
 	}
 	
 	private String[] translate() {
@@ -75,32 +62,8 @@ public class FourNumberProblemSolver implements Solvable {
 		solution[0] = Solvable.SOLVED;
 		return solution;
 	}
-	
-	// Getters and setters
-	public FourNumberProblem getProblem() {
-		return problem;
-	}
-
-	public String getEvaluation() {
-		return evaluation;
-	}
-
-	public void setEvaluation(String evaluation) {
-		this.evaluation = evaluation;
-	}
-
-	public NumberWithOpStack getSolveStack() {
-		return solveStack;
-	}
-
-	public boolean isBruteForce() {
-		return bruteForce;
-	}
-
-	public void setBruteForce(boolean bruteForce) {
-		this.bruteForce = bruteForce;
-	}
-
+		
+	// Testing
 	public static void main(String[] args) {
 		int goal = 33;
 		int[]choices = {8, 35, 4, 9};
@@ -109,7 +72,8 @@ public class FourNumberProblemSolver implements Solvable {
 		pojo.setChoices(choices);
 			
 		FourNumberProblemSolver solver = new FourNumberProblemSolver(
-											new FourNumberProblem(pojo));
+											new FourNumberProblem(pojo),
+											new FourNumberProblemEvaluator());
 		String[] solution = solver.solve();
 		if (solution != null && solution.length>0) {
 			display("\r\nProcess complete. A Solution was found.");

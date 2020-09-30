@@ -1,14 +1,11 @@
 package com.fournumbers.interfaces;
 
-public interface Solvable extends Problematic {
- 
-	public static String SOLVED = "SOLVED";
-	
+public interface Solvable extends Evaluable {
+ 	
 	public static String NOT_RESOLVED = "NOT RESOLVED";
 	public static String RESOLVED = "RESOLVED";
 	
-	public static String NOT_STARTED = "NOT STARTED";
-	
-	String evaluate(); 	
+	public static String SOLVED = "SOLVED";
+
 	String[] solve();
 }

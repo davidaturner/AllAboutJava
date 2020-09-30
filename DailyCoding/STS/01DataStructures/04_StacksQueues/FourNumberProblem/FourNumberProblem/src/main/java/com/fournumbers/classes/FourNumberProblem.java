@@ -3,10 +3,8 @@ package com.fournumbers.classes;
 import com.fournumbers.interfaces.Problematic;
 import com.fournumbers.interfaces.Solvable;
 
-public class FourNumberProblem implements Problematic {
+public class FourNumberProblem extends FourNumberProblemPOJO implements Problematic {
 
-	private final int goal;
-	private final int[] choices;
 	private String prestep;
 	
 	public FourNumberProblem(FourNumberProblemPOJO problem) {
@@ -15,7 +13,7 @@ public class FourNumberProblem implements Problematic {
 	public FourNumberProblem(int goal, int[]choices) {
 		this.goal 	= goal;
 		this.choices = choices;
-		this.prestep = Solvable.NOT_STARTED;
+		this.prestep = Problematic.NOT_VALID;
 	}
 	
 	@Override
@@ -45,14 +43,6 @@ public class FourNumberProblem implements Problematic {
 		this.prestep = prestep;
 	}
 
-	public int getGoal() {
-		return goal;
-	}
-
-	public int[] getChoices() {
-		return choices;
-	}
-	
 	//Main
 	public static void main(String[] args) {
 		int goal = 33;
