@@ -7,13 +7,20 @@ public class FourNumberProblem extends FourNumberProblemPOJO implements Problema
 
 	private String prestep;
 	
+	public static final String OP_INIT = "START";
+	
+	public static final String OP_ADD = "ADD";
+	public static final String OP_SUBTRACT = "SUBTRACT";
+	public static final String OP_MULTIPLY = "MULTIPLY";
+	public static final String OP_DIVIDE = "DIVIDE";
+	
 	public FourNumberProblem(FourNumberProblemPOJO problem) {
 		this(problem.getGoal(), problem.getChoices());
 	}
 	public FourNumberProblem(int goal, int[]choices) {
 		this.goal 	= goal;
 		this.choices = choices;
-		this.prestep = Problematic.NOT_VALID;
+		this.prestep = OP_INIT;
 	}
 	
 	@Override

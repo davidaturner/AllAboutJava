@@ -15,7 +15,7 @@ public class FourNumberProblemSolver implements Solvable, Problematic {
 	private Evaluable evaluator;
 	
 	public FourNumberProblemSolver(FourNumberProblem problem,
-									FourNumberProblemEvaluator evaluator) {
+									FourNumberProblemRecursive evaluator) {
 		this.problem = problem;
 		this.evaluator = evaluator;
 	}
@@ -73,7 +73,7 @@ public class FourNumberProblemSolver implements Solvable, Problematic {
 			
 		FourNumberProblemSolver solver = new FourNumberProblemSolver(
 											new FourNumberProblem(pojo),
-											new FourNumberProblemEvaluator());
+											new FourNumberProblemRecursive());
 		String[] solution = solver.solve();
 		if (solution != null && solution.length>0) {
 			display("\r\nProcess complete. A Solution was found.");
