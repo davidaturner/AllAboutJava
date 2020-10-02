@@ -1,0 +1,24 @@
+package com.example.demo.classes;
+
+public class BasicStack {
+
+	private int[] stack = null;
+	
+	
+	// Getters and Setters
+	public int[] getStack() {
+		return stack;
+	}
+
+	public void setStack(int[] stack) {
+		this.stack = stack;
+	}
+
+
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

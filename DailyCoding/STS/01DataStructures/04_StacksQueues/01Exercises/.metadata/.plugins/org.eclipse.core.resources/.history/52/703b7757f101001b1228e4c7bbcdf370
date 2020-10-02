@@ -1,0 +1,45 @@
+package com.example.demo.classes;
+
+import java.util.ArrayList;
+
+import com.example.demo.interfaces.Stackable;
+
+public class BasicStack implements Stackable{
+	
+	private ArrayList<String>stack = new ArrayList<>();
+
+	@Override
+	public void push(String ontoStack) {
+		
+		stack.add(ontoStack);
+	}
+
+	@Override
+	public String pop() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String peek() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	// Getters and Setters
+	public ArrayList<String> getStack() {
+		return stack;
+	}
+
+	public void setStack(ArrayList<String> stack) {
+		this.stack = stack;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+
+
+}
